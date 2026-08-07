@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0A0A0F;
+  --ink-soft: #0F0F16;
+  --graphite: #16161C;
+  --graphite-line: #232330;
+  --paper: #FAFAF9;
+  --mist: #EEEEF2;
+  --indigo: #5B54F0;
+  --periwinkle: #8C86FF;
+  --indigo-dim: rgba(91,84,240,0.14);
+  --text-hi: #F5F5F7;
+  --text-mid: #A6A6B3;
+  --text-low: #83838F;
+}
+
+/* Light mode overrides, toggled via data-theme="light" on <html> */
+:root[data-theme="light"] {
+  --ink: #FAFAF9;
+  --ink-soft: #F1F1F4;
+  --graphite: #FFFFFF;
+  --graphite-line: #E3E3E8;
+  --indigo-dim: rgba(91,84,240,0.08);
+  --text-hi: #14141A;
+  --text-mid: #55555F;
+  --text-low: #6C6C74;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-graphite: var(--graphite);
+  --color-graphite-line: var(--graphite-line);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-indigo: var(--indigo);
+  --color-indigo-dim: var(--indigo-dim);
+  --color-periwinkle: var(--periwinkle);
+  --color-text-hi: var(--text-hi);
+  --color-text-mid: var(--text-mid);
+  --color-text-low: var(--text-low);
+  --font-display: var(--font-inter);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text-hi);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 200;
+  background: var(--indigo);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Prevent iOS Safari from auto-zooming the page when a form field is
+   focused — anything under 16px triggers it. Visual size is unaffected
+   since the surrounding Tailwind text-sm classes still apply on desktop. */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+::selection {
+  background: var(--indigo);
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--periwinkle);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
