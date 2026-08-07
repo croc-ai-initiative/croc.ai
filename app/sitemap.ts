@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const routes = [
   "",
   "/solutions",
@@ -18,6 +20,7 @@ const routes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://crocai.ng";
+
   return routes.map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date(),
