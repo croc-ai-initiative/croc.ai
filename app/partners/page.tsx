@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { CtaBanner } from "@/components/cta-banner";
+import { assetPath } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -36,7 +36,8 @@ function PartnerCard({ p }: { p: Partner }) {
     <div className="bg-ink border border-graphite-line rounded-2xl p-7 flex flex-col hover:border-periwinkle/30 transition-colors">
       {p.logo && (
         <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center p-2 mb-5">
-          <Image src={p.logo} alt={`${p.name} logo`} width={56} height={56} className="w-full h-full object-contain" />
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/image doesn't respect basePath when unoptimized (required for static export); see lib/utils.ts assetPath() */}
+        <img src={assetPath(p.logo)} alt={`${p.name} logo`} width={56} height={56} className="w-full h-full object-contain" />
         </div>
       )}
       <h3 className="font-display font-semibold text-base mb-2">{p.name}</h3>
