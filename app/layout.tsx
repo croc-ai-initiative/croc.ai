@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({
-  subsets: ["latin"],
+// Self-hosted variable Inter font — avoids depending on Google Fonts being
+// reachable at build time (fonts.googleapis.com can be blocked or rate
+// limited in some CI/sandboxed environments, which fails next/font/google
+// builds outright). This file ships with the repo, so builds are fully
+// offline-capable and slightly faster too.
+const inter = localFont({
+  src: "./fonts/inter-variable.woff2",
   variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
+  weight: "100 900",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

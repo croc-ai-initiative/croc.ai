@@ -1,5 +1,9 @@
 import { ImageResponse } from "next/og";
 
+// Required for output: "export" — this route has no dynamic params, but
+// Next.js needs it explicitly marked static or the build fails.
+export const dynamic = "force-static";
+
 export const alt = "CROC AI Initiative: Advancing AI Innovation in Africa";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
