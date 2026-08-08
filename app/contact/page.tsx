@@ -55,6 +55,15 @@ export default function ContactPage() {
                 <button type="submit" className="px-5 py-2.5 rounded-lg bg-indigo text-white text-sm font-semibold hover:bg-periwinkle transition-colors">Subscribe</button>
               </form>
             </div>
+            <div className="bg-graphite border border-graphite-line rounded-2xl p-6 mt-6">
+              <h3 className="font-display text-base font-semibold mb-2">Partnership Enquiries</h3>
+              <p className="text-text-mid text-sm leading-relaxed mb-4">
+                Universities, government agencies, NGOs, technology
+                companies, and sponsors — select &quot;Partnership
+                enquiry&quot; in the form, or reach out directly.
+              </p>
+              <a href="mailto:partnerships@crocai.ng" className="text-sm text-periwinkle font-semibold">partnerships@crocai.ng →</a>
+            </div>
           </div>
           <ContactForm />
         </div>

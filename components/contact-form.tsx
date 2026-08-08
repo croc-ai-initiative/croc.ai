@@ -39,9 +39,10 @@ export function ContactForm() {
         <div className="relative">
           <select id="reason" className="w-full appearance-none bg-ink border border-graphite-line rounded-lg px-4 py-3 text-sm text-text-hi focus:outline-none focus:border-periwinkle/60 cursor-pointer">
             <option>General enquiry</option>
-            <option>AI consulting / services</option>
-            <option>Government partnership</option>
-            <option>Workshop / AI Academy</option>
+            <option>Partnership enquiry</option>
+            <option>Programs / Workshop registration</option>
+            <option>Community membership</option>
+            <option>Volunteering</option>
             <option>Careers</option>
             <option>Press</option>
           </select>

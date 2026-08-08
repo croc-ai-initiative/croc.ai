@@ -1,38 +1,41 @@
 import Link from "next/link";
+import { assetPath } from "@/lib/utils";
 
 const COLUMNS = [
   {
-    heading: "Company",
+    heading: "About",
     links: [
-      { href: "/company", label: "Mission & Vision" },
-      { href: "/company#leadership", label: "Leadership" },
-      { href: "/partners", label: "Partners" },
+      { href: "/about", label: "Our Story" },
+      { href: "/about", label: "Mission & Vision" },
+      { href: "/about#leadership", label: "Leadership Team" },
       { href: "/careers", label: "Careers" },
     ],
   },
   {
-    heading: "Solutions",
+    heading: "Programs",
     links: [
-      { href: "/solutions", label: "Artificial Intelligence" },
-      { href: "/solutions#rag", label: "Agentic AI & RAG" },
-      { href: "/services#cybersecurity", label: "Cybersecurity" },
-      { href: "/services", label: "Consulting" },
+      { href: "/programs", label: "All Programs" },
+      { href: "/projects#research-lab", label: "AI Innovation Lab" },
+      { href: "/ai-academy", label: "Workshops" },
+      { href: "/services", label: "Institutional Services" },
     ],
   },
   {
-    heading: "AI Academy",
+    heading: "Events & Community",
     links: [
-      { href: "/ai-academy", label: "Workshops" },
-      { href: "/ai-academy#corporate", label: "Corporate Training" },
-      { href: "/ai-academy#certification", label: "Certification" },
+      { href: "/events", label: "All Events" },
+      { href: "/community", label: "Become a Member" },
+      { href: "/community", label: "Volunteer" },
+      { href: "/research", label: "Research & Publications" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { href: "/research", label: "Research & Publications" },
-      { href: "/case-studies", label: "Case Studies" },
-      { href: "/blog", label: "Blog & News" },
+      { href: "/resources", label: "Resource Library" },
+      { href: "/case-studies", label: "Impact Stories" },
+      { href: "/news", label: "News & Blog" },
+      { href: "/partners", label: "Partners" },
     ],
   },
   {
@@ -51,7 +54,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-7 gap-8 mb-16">
           <div className="col-span-2">
             <div className="flex items-center gap-2 font-display font-bold text-xl">
-              <img src="/croc-ai-icon-white.png" alt="" className="w-6 h-6 shrink-0" />
+              <img src={assetPath("/croc-ai-icon-white.png")} alt="" className="w-6 h-6 shrink-0" />
               <span className="flex items-baseline">
                 <span className="text-text-hi">CROC</span>
                 <span className="text-indigo ml-1.5">AI</span>

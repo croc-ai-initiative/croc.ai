@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SectionHead } from "@/components/section-head";
 import { CtaBanner } from "@/components/cta-banner";
 
@@ -25,7 +26,8 @@ export default function ResearchPage() {
           </h1>
           <p className="text-text-mid text-lg max-w-2xl mt-6 leading-relaxed">
             Our research is led by academic and defence-sector advisors, and
-            feeds directly into the products and systems we build.
+            feeds directly into the programmes and systems we build. See our{" "}
+            <Link href="/solutions" className="text-periwinkle font-semibold">full technical stack →</Link>
           </p>
         </div>
       </section>

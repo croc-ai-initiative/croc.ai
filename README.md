@@ -64,9 +64,33 @@ This reads `package.json` and downloads every package the site needs (Next.js, R
 npm run dev
 ```
 
-Visit `http://localhost:4000` — the dev and start scripts are configured to run on port **4000** (see `package.json` → `scripts`). To change the port, edit the `-p 4000` flag in both scripts in `package.json`.
+Visit `http://localhost:4000` — the dev and start scripts are configured to run on port **4000** (see `package.json` → `scripts`).
 
-Note: ports `3000` and `5000` are common defaults that are often already in use by other local projects, and port `6000` is reserved by X11 on Linux/macOS (Next.js will refuse to start on it). If `4000` is also taken on your machine, pick any free port above `1024`, e.g. `-p 4001`.
+### "Port already in use" (EADDRINUSE)
+
+This almost always means a previous `npm run dev` is still running in another terminal (or was closed without stopping it), not that a different app owns the port. Two ways to fix it:
+
+**Option A — free up port 4000 (recommended):**
+
+```bash
+# macOS / Linux
+lsof -ti:4000 | xargs kill -9
+
+# Windows (PowerShell)
+Get-Process -Id (Get-NetTCPConnection -LocalPort 4000).OwningProcess | Stop-Process -Force
+```
+
+Then run `npm run dev` again.
+
+**Option B — run on a different port for just this session, without editing any files:**
+
+```bash
+npx next dev -p 4321
+```
+
+(Swap `4321` for any free port above 1024.) Note: port `6000` is reserved by X11 on Linux/macOS and Next.js will refuse to bind to it — avoid that one specifically.
+
+If you want to change the *default* port permanently, edit the `-p 4000` flag in both the `dev` and `start` scripts in `package.json`.
 
 ## Wiring up the forms (before real launch)
 
@@ -145,17 +169,22 @@ You shouldn't need to edit this file unless you add a new tool that generates it
 app/
   layout.tsx          Root layout, fonts, metadata
   page.tsx             Home
-  solutions/           Solutions page
-  projects/            Projects page (AI Research & Innovation Lab, Community AI Literacy Programme)
-  ai-academy/          AI Academy + workshop registration
-  research/            Research & Innovation
-  government/          Government Partnerships
-  services/            Services
-  case-studies/        Impact Stories
-  company/             Company (mission, vision, team)
+  about/               About (story, mission, vision, values, leadership)
+  programs/            Programs (8 flagship programs)
+  events/              Events (workshops, hackathons, AI Fridays, archive)
+  community/           Community (membership, volunteering)
+  resources/           Resources (roadmaps, courses, toolkits, etc.)
+  partners/            Partners (universities, government, sponsors)
+  news/                News & Blog
+  contact/             Contact (form, email, social, newsletter, partnerships)
+  projects/            Flagship initiatives (Research Lab, Literacy Programme)
+  ai-academy/          Flagship workshop deep-dive + registration
+  research/            Research & Innovation deep-dive
+  solutions/           Technical focus areas (linked from Research)
+  services/            Institutional services (linked from Programs/Partners)
+  case-studies/        Impact Stories (linked from News)
   careers/             Careers
-  blog/                Blog & News
-  contact/             Contact
+  government/          Redirects to /partners#government (old route, kept for old links)
   privacy/, terms/     Legal pages
   sitemap.ts           Dynamic sitemap
   robots.ts            robots.txt
@@ -164,5 +193,5 @@ components/
   cta-banner.tsx, register-form.tsx, contact-form.tsx
   ui/button.tsx
 lib/
-  utils.ts             cn() class-merging helper
+  utils.ts             cn() class-merging helper, assetPath() for basePath-safe asset URLs
 ```

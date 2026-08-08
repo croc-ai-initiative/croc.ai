@@ -1,26 +1,26 @@
 import type { MetadataRoute } from "next";
 
-export const dynamic = "force-static";
-
 const routes = [
   "",
-  "/solutions",
+  "/about",
+  "/programs",
+  "/events",
+  "/community",
+  "/resources",
+  "/partners",
+  "/news",
+  "/contact",
   "/projects",
   "/ai-academy",
   "/research",
-  "/government",
-  "/partners",
+  "/solutions",
   "/services",
   "/case-studies",
-  "/company",
   "/careers",
-  "/blog",
-  "/contact",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://crocai.ng";
-
   return routes.map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date(),

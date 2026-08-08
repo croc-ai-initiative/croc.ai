@@ -5,14 +5,16 @@ import { useState } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
+import { assetPath } from "@/lib/utils";
 
 const LINKS = [
-  { href: "/solutions", label: "Solutions" },
-  { href: "/projects", label: "Projects" },
-  { href: "/ai-academy", label: "AI Academy" },
-  { href: "/research", label: "Research" },
+  { href: "/about", label: "About" },
+  { href: "/programs", label: "Programs" },
+  { href: "/events", label: "Events" },
+  { href: "/community", label: "Community" },
+  { href: "/resources", label: "Resources" },
   { href: "/partners", label: "Partners" },
-  { href: "/company", label: "Company" },
+  { href: "/news", label: "News" },
 ];
 
 export function Nav() {
@@ -23,7 +25,7 @@ export function Nav() {
     <header className="fixed top-0 left-0 right-0 z-[100] bg-ink/72 backdrop-blur-md border-b border-graphite-line">
       <div className="max-w-[1240px] mx-auto px-6 md:px-8 h-[72px] flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 font-display font-bold text-xl tracking-tight">
-          <img src="/croc-ai-icon-white.png" alt="" className="w-7 h-7 shrink-0" />
+          <img src={assetPath("/croc-ai-icon-white.png")} alt="" className="w-7 h-7 shrink-0" />
           <span className="flex items-baseline">
             <span className="text-text-hi">CROC</span>
             <span className="text-indigo ml-1.5">AI</span>
@@ -33,12 +35,12 @@ export function Nav() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex gap-9">
+        <nav className="hidden lg:flex gap-6 xl:gap-8">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-text-mid font-medium hover:text-text-hi transition-colors"
+              className="text-sm text-text-mid font-medium hover:text-text-hi transition-colors whitespace-nowrap"
             >
               {l.label}
             </Link>
@@ -64,7 +66,7 @@ export function Nav() {
           </Button>
           <button
             aria-label="Toggle menu"
-            className="md:hidden text-text-hi"
+            className="lg:hidden text-text-hi"
             onClick={() => setOpen(!open)}
           >
             {open ? <X size={22} /> : <Menu size={22} />}
@@ -73,7 +75,7 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-graphite-line bg-ink px-6 py-6 flex flex-col gap-5">
+        <div className="lg:hidden border-t border-graphite-line bg-ink px-6 py-6 flex flex-col gap-5">
           {LINKS.map((l) => (
             <Link
               key={l.href}

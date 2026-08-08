@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Handshake } from "lucide-react";
+import { Handshake, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHead } from "@/components/section-head";
 import { HeroCanvas } from "@/components/hero-canvas";
@@ -13,57 +13,25 @@ const PARTNERS = [
   { name: "Carnegie Mellon University Africa", logo: "/partners/cmu-africa.png" },
 ];
 
-const PROJECTS = [
-  {
-    initials: "Rl",
-    name: "AI Research & Innovation Lab",
-    tagline:
-      "An applied research initiative developing homegrown AI tools for African languages, education, agriculture, and public service delivery.",
-    tags: ["Applied Research", "African Languages", "Open Tools"],
-    href: "/projects#research-lab",
-  },
-  {
-    initials: "Cl",
-    name: "Community AI Literacy Programme",
-    tagline:
-      "A public education initiative teaching students, educators, and civil servants across Nigeria how to use, and build, AI responsibly.",
-    tags: ["Public Education", "Digital Literacy", "Outreach"],
-    href: "/projects#literacy",
-  },
+const FEATURED_PROGRAMS = [
+  { name: "AI Innovation Lab", desc: "Applied research developing homegrown AI for African languages, education, agriculture, and public service.", href: "/programs#innovation-lab" },
+  { name: "Workshops", desc: "Hands-on training, starting with the flagship CROC AI Workshop Series — from AI users to AI builders.", href: "/programs#workshops" },
+  { name: "Fellowship Program", desc: "A research fellowship pairing emerging researchers with the Innovation Lab on real applied problems.", href: "/programs#fellowship" },
+  { name: "Community Outreach", desc: "Public AI literacy and digital-safety sensitisation, including our annual Cyber Hygiene Day.", href: "/programs#community-outreach" },
 ];
 
-const TIMELINE = [
-  {
-    num: "DAY 01",
-    title: "Foundations of Generative AI",
-    desc: "How large language models work, where they fail, and why retrieval changes the equation.",
-  },
-  {
-    num: "DAY 02",
-    title: "Building with RAG",
-    desc: "Hands-on: connecting a knowledge base to a model, chunking, embeddings, and retrieval pipelines.",
-  },
-  {
-    num: "DAY 03",
-    title: "Ship Your Chatbot",
-    desc: "Each participant deploys a working AI chatbot, grounded in real data, and presents it live.",
-  },
+const NEWS_PREVIEW = [
+  { cat: "Partnership Announcements", title: "CROC AI partners with Kaduna State Government to launch the AI Workshop Series" },
+  { cat: "Research Highlights", title: "Trustworthy AI and RAG: our approach to grounded, auditable systems" },
+  { cat: "Workshop & Event Announcements", title: "What to expect at Build Your Own AI Chatbot, August 27–29" },
 ];
 
-const SOLUTIONS = [
-  { title: "Artificial Intelligence & ML", desc: "Applied AI and machine learning systems designed for real operating conditions." },
-  { title: "Large Language Models", desc: "Fine-tuning, evaluation, and deployment of LLMs for domain-specific use." },
-  { title: "Retrieval-Augmented Generation", desc: "AI that answers from your own data, not just its training." },
-  { title: "Agentic AI Systems", desc: "Autonomous, tool-using agents built for trustworthy, auditable execution." },
-  { title: "Software Engineering", desc: "Production-grade platforms, from architecture to deployment." },
-  { title: "Cybersecurity", desc: "Security and digital trust engineering, advised by defence-sector experts." },
-];
-
-const LEADERS = [
-  { initials: "NI", name: "Nasiru Iliya", role: "CEO & President", cred: "MSc AI, Carnegie Mellon University Africa. Assistant Lecturer, Cyber Security, Nigerian Defence Academy." },
-  { initials: "HS", name: "Haruna Saidu", role: "Co-Founder & CTO", cred: "Senior System Analyst. Full-stack software engineer, Kaduna State University." },
-  { initials: "MA", name: "Prof. Muhammad Aminu Ahmad", role: "Chief Scientific & Innovation Advisor", cred: "Professor, Kaduna State University." },
-  { initials: "MI", name: "Dr Mohammed Ibrahim", role: "Chief Cybersecurity & Digital Trust Advisor", cred: "Head, Department of Cyber Security, Nigerian Defence Academy." },
+const IMPACT = [
+  ["1", "Workshops Delivered"],
+  ["1", "Universities Engaged"],
+  ["6", "Community Members"],
+  ["2", "Strategic Partnerships"],
+  ["1", "Countries Reached"],
 ];
 
 export default function Home() {
@@ -88,14 +56,14 @@ export default function Home() {
             training the next generation of African AI builders to do the same.
           </p>
           <div className="flex gap-4 mt-10 flex-wrap">
-            <Button href="/solutions">Explore Our Work</Button>
-            <Button href="/ai-academy" variant="ghost">
-              Join the AI Workshop →
+            <Button href="/community">Get Involved</Button>
+            <Button href="/programs" variant="ghost">
+              Explore Programs →
             </Button>
           </div>
           <div className="flex gap-12 mt-21 flex-wrap">
             {[
-              ["02", "Flagship Projects"],
+              ["8", "Flagship Programs"],
               ["6", "Team Members"],
               ["1", "State Govt. Partner"],
               ["3", "Day Flagship Workshop"],
@@ -109,72 +77,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PARTNER WALL */}
-      <div className="border-t border-b border-graphite-line py-14 bg-ink-soft">
-        <div className="max-w-[1240px] mx-auto px-6 md:px-8">
-          <div className="flex items-center justify-between mb-6">
-            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-low">
-              Working alongside
-            </span>
-            <Link href="/partners" className="text-sm text-periwinkle font-medium hover:text-indigo transition-colors">
-              All partners →
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-graphite-line border border-graphite-line rounded-2xl overflow-hidden">
-            {PARTNERS.map((p) => (
-              <div key={p.name} className="bg-ink h-28 flex flex-col items-center justify-center gap-2 px-3 text-center hover:bg-graphite transition-colors">
-                <div className="w-11 h-11 bg-white rounded-lg flex items-center justify-center p-1.5">
-                  <Image src={p.logo} alt={`${p.name} logo`} width={44} height={44} className="w-full h-full object-contain" />
-                </div>
-                <span className="font-display font-semibold text-[11px] text-text-mid hover:text-text-hi transition-colors leading-tight">
-                  {p.name}
-                </span>
-              </div>
-            ))}
-          </div>
+      {/* MISSION STATEMENT */}
+      <section className="py-24 md:py-30 bg-ink-soft border-t border-b border-graphite-line">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-8 text-center">
+          <span className="font-mono text-xs tracking-[0.12em] uppercase text-indigo mb-5 block">Our Mission</span>
+          <p className="font-display font-semibold text-[clamp(24px,3.4vw,38px)] leading-[1.25] tracking-tight max-w-3xl mx-auto">
+            To advance and inspire AI innovation in Nigeria, and across
+            Africa, through applied research, capacity building, and
+            locally relevant AI systems, growing a generation of homegrown
+            AI researchers and builders solving the continent&apos;s own problems.
+          </p>
+          <Link href="/about" className="inline-flex items-center gap-1.5 text-periwinkle text-sm font-semibold mt-7">
+            More on our story and vision →
+          </Link>
         </div>
-      </div>
+      </section>
 
-      {/* PROJECTS */}
+      {/* FEATURED PROGRAMS */}
       <section className="py-24 md:py-30">
         <div className="max-w-[1240px] mx-auto px-6 md:px-8">
-          <SectionHead
-            tag="Projects"
-            title="Where the mission becomes real."
-            desc="Two flagship initiatives, advancing applied AI research and AI literacy across Nigeria today."
-          />
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+            <SectionHead
+              tag="Featured Programs"
+              title="Eight programs, one pipeline."
+              desc="From first exposure to applied research — every programme feeds the next."
+            />
+            <Button href="/programs" variant="ghost">All Programs →</Button>
+          </div>
           <div className="grid md:grid-cols-2 gap-6">
-            {PROJECTS.map((p) => (
-              <div
+            {FEATURED_PROGRAMS.map((p) => (
+              <Link
                 key={p.name}
-                className="group bg-graphite border border-graphite-line rounded-[20px] p-10 flex flex-col gap-5 hover:border-periwinkle/35 hover:-translate-y-1 transition-all duration-300"
+                href={p.href}
+                className="group bg-graphite border border-graphite-line rounded-2xl p-8 hover:border-periwinkle/35 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-indigo-dim flex items-center justify-center text-periwinkle font-display font-bold text-lg">
-                  {p.initials}
-                </div>
-                <div className="font-display text-2xl font-semibold">{p.name}</div>
-                <p className="text-text-mid text-[15px] leading-relaxed">{p.tagline}</p>
-                <div className="flex gap-2 flex-wrap mt-auto">
-                  {p.tags.map((t) => (
-                    <span key={t} className="font-mono text-[11px] text-text-low bg-white/4 border border-graphite-line px-2.5 py-1 rounded-md">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <Link href={p.href} className="inline-flex items-center gap-1.5 text-periwinkle text-sm font-semibold mt-2">
-                  View project{" "}
-                  <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
-                </Link>
-              </div>
+                <h3 className="font-display text-xl font-semibold mb-2.5">{p.name}</h3>
+                <p className="text-text-mid text-[14.5px] leading-relaxed mb-4">{p.desc}</p>
+                <span className="inline-flex items-center gap-1.5 text-periwinkle text-sm font-semibold">
+                  Learn more <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* WORKSHOP (flagship) */}
+      {/* UPCOMING EVENTS (flagship workshop) */}
       <section id="workshop" className="py-24 md:py-30 bg-ink-soft border-t border-b border-graphite-line">
         <div className="max-w-[1240px] mx-auto px-6 md:px-8">
-          <div className="rounded-3xl overflow-hidden relative bg-gradient-to-br from-[#14131f] via-[#1a1830] to-[#211c3d] border border-periwinkle/20 p-8 md:p-14 mb-18">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+            <SectionHead tag="Upcoming Events" title="What's next." />
+            <Button href="/events" variant="ghost">All Events →</Button>
+          </div>
+          <div className="rounded-3xl overflow-hidden relative bg-gradient-to-br from-[#14131f] via-[#1a1830] to-[#211c3d] border border-periwinkle/20 p-8 md:p-14">
             <div className="absolute -top-[40%] -right-[10%] w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(140,134,255,0.18)_0%,transparent_70%)] pointer-events-none" />
             <span className="relative inline-flex items-center gap-2.5 bg-white/6 border border-white/12 px-4 py-2 rounded-full font-mono text-xs text-white/70 mb-6">
               <Handshake size={14} className="text-periwinkle" strokeWidth={2} />
@@ -210,74 +165,112 @@ export default function Home() {
             </div>
           </div>
 
-          <SectionHead tag="Programme" title="Three days. Zero to builder." />
-          <div className="grid md:grid-cols-3 gap-6">
-            {TIMELINE.map((t) => (
-              <div key={t.num} className="border-t-2 border-graphite-line pt-5">
-                <span className="font-mono text-[13px] text-periwinkle block mb-3">{t.num}</span>
-                <div className="font-display text-xl font-semibold mb-2.5">{t.title}</div>
-                <p className="text-text-mid text-[14.5px] leading-relaxed">{t.desc}</p>
+          <div className="grid sm:grid-cols-2 gap-6 mt-6">
+            {[
+              { cat: "AI Fridays", title: "AI Fridays — weekly community session", date: "Schedule to be announced", venue: "Kaduna / Online" },
+              { cat: "Hackathons", title: "First CROC AI Hackathon", date: "Date to be announced", venue: "Kaduna, Nigeria" },
+            ].map((e) => (
+              <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl p-7">
+                <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle">{e.cat}</span>
+                <h4 className="font-display text-base font-semibold mt-2 mb-3">{e.title}</h4>
+                <div className="flex items-center gap-2 text-text-mid text-sm mb-1.5">
+                  <Calendar size={13} className="text-text-low shrink-0" /> {e.date}
+                </div>
+                <div className="flex items-center gap-2 text-text-mid text-sm">
+                  <MapPin size={13} className="text-text-low shrink-0" /> {e.venue}
+                </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-18">
-            {[
-              ["1st", "Cohort launching in Kaduna"],
-              ["3", "Days, fully practical"],
-              ["2", "Government & academic partners"],
-              ["100%", "Project-based, ship something real"],
-            ].map(([num, label]) => (
-              <div key={label}>
-                <div className="font-display text-[46px] font-bold text-text-hi">{num}</div>
+      {/* LATEST NEWS */}
+      <section className="py-24 md:py-30">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+            <SectionHead tag="Latest News" title="What we're building, thinking, and shipping." />
+            <Button href="/news" variant="ghost">All News →</Button>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {NEWS_PREVIEW.map((n) => (
+              <div key={n.title} className="border border-graphite-line rounded-2xl overflow-hidden hover:border-periwinkle/30 transition-colors">
+                <div className="h-32 bg-gradient-to-br from-[#1a1830] to-[#232042] relative">
+                  <div className="absolute inset-0 opacity-40 bg-[repeating-linear-gradient(45deg,rgba(140,134,255,0.08)_0px,transparent_2px,transparent_40px)]" />
+                </div>
+                <div className="p-6">
+                  <span className="font-mono text-[11px] uppercase text-periwinkle tracking-[0.06em]">{n.cat}</span>
+                  <h3 className="font-display text-[15px] font-semibold mt-2.5 leading-snug">{n.title}</h3>
+                  <div className="text-[13px] text-text-low mt-3">Coming soon</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* IMPACT */}
+      <section className="py-24 md:py-30 bg-ink-soft border-t border-b border-graphite-line">
+        <div className="max-w-[1240px] mx-auto px-6 md:px-8">
+          <SectionHead tag="Impact" title="Measured by what actually changes." />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {IMPACT.map(([num, label]) => (
+              <div key={label} className="border-t-2 border-graphite-line pt-5">
+                <div className="font-display text-[40px] font-bold text-text-hi">{num}</div>
                 <div className="text-sm text-text-mid mt-2">{label}</div>
               </div>
             ))}
           </div>
+          <p className="text-text-low text-sm mt-8">
+            These numbers reflect where we are today, at launch. We&apos;ll update them as every programme runs.
+          </p>
         </div>
       </section>
 
-      {/* SOLUTIONS */}
+      {/* PARTNERS */}
       <section className="py-24 md:py-30">
         <div className="max-w-[1240px] mx-auto px-6 md:px-8">
-          <SectionHead
-            tag="Solutions"
-            title="Where we build."
-            desc="CROC AI operates across the full stack of applied AI, from research to production systems."
-          />
-          <div className="grid md:grid-cols-3 gap-px bg-graphite-line border border-graphite-line rounded-3xl overflow-hidden">
-            {SOLUTIONS.map((s) => (
-              <div key={s.title} className="bg-ink p-9 hover:bg-graphite transition-colors">
-                <h4 className="font-display text-lg font-semibold mb-2.5">{s.title}</h4>
-                <p className="text-sm text-text-mid leading-relaxed">{s.desc}</p>
+          <div className="flex items-center justify-between mb-6">
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-low">
+              Working alongside
+            </span>
+            <Link href="/partners" className="text-sm text-periwinkle font-medium hover:text-indigo transition-colors">
+              All partners →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-px bg-graphite-line border border-graphite-line rounded-2xl overflow-hidden">
+            {PARTNERS.map((p) => (
+              <div key={p.name} className="bg-ink h-28 flex flex-col items-center justify-center gap-2 px-3 text-center hover:bg-graphite transition-colors">
+                <div className="w-11 h-11 bg-white rounded-lg flex items-center justify-center p-1.5">
+                  <Image src={p.logo} alt={`${p.name} logo`} width={44} height={44} className="w-full h-full object-contain" />
+                </div>
+                <span className="font-display font-semibold text-[11px] text-text-mid hover:text-text-hi transition-colors leading-tight">
+                  {p.name}
+                </span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* LEADERSHIP TEASER */}
+      {/* GET INVOLVED */}
       <section className="py-24 md:py-30">
         <div className="max-w-[1240px] mx-auto px-6 md:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
-            <SectionHead
-              tag="Team"
-              title="Built by researchers and engineers."
-              desc="Leadership grounded in both academia and defence-sector cybersecurity."
-            />
-            <Button href="/company#leadership" variant="ghost">
-              Meet the full team →
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-graphite-line border border-graphite-line rounded-2xl overflow-hidden">
-            {LEADERS.map((l) => (
-              <div key={l.initials} className="bg-ink p-7 hover:bg-graphite transition-colors">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-indigo to-periwinkle flex items-center justify-center font-display font-bold text-white text-lg mb-5">
-                  {l.initials}
-                </div>
-                <div className="font-display font-semibold text-base">{l.name}</div>
-                <div className="text-[13px] text-indigo mt-1 font-semibold">{l.role}</div>
-              </div>
+          <SectionHead tag="Get Involved" title="Join, volunteer, partner, or support." desc="However you want to contribute, there's a place for you in this mission." />
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { title: "Become a Member", desc: "Join our growing community of AI practitioners and students.", href: "/community" },
+              { title: "Volunteer", desc: "Facilitate, mentor, or support our programmes and events.", href: "/community" },
+              { title: "Partner", desc: "Universities, government, NGOs, and companies advancing AI together.", href: "/partners" },
+              { title: "Support", desc: "Sponsor a workshop, cohort, or research stream.", href: "/contact" },
+            ].map((g) => (
+              <Link key={g.title} href={g.href} className="group bg-graphite border border-graphite-line rounded-2xl p-7 hover:border-periwinkle/35 transition-colors">
+                <h4 className="font-display text-base font-semibold mb-2">{g.title}</h4>
+                <p className="text-text-mid text-sm leading-relaxed mb-4">{g.desc}</p>
+                <span className="text-periwinkle text-sm font-semibold inline-flex items-center gap-1.5">
+                  Get started <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
