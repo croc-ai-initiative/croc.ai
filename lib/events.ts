@@ -29,7 +29,7 @@
  */
 
 export type UpcomingEvent = {
-  category: "Workshops" | "Conferences" | "Hackathons" | "Webinars" | "Meetups" | "AI Fridays";
+  category: "Workshops" | "Conferences" | "Hackathons" | "Webinars" | "Meetups" | "AI Fridays" | "Launch";
   title: string;
   date: string;
   venue: string;
@@ -52,7 +52,9 @@ export type PastEvent = {
   date: string;
   venue: string;
   recap: string;
-  /** Paths under /public, e.g. ["/events/gallery/1.jpg", ...] */
+  /** A single banner/hero image for the event, shown above the recap — path under /public, e.g. "/events/my-banner.jpg". Optional. */
+  coverImage?: string;
+  /** Paths under /public, e.g. ["/events/gallery/1.jpg", ...] — a grid of additional photos. Optional. */
   gallery: string[];
   speakers?: string[];
 };
@@ -90,7 +92,23 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
 ];
 
 export const PAST_EVENTS: PastEvent[] = [
-  // Empty for now — once the first workshop wraps, add an entry here, e.g.:
+  {
+    category: "Launch",
+    title: "The Launch of CROC AI Initiative",
+    // NOTE: placeholder date, aligned with "Est. August 2026" and the
+    // annual Cyber Hygiene Day (Aug 6) already used elsewhere on the
+    // site — confirm and replace with the exact launch date.
+    date: "August 6, 2026",
+    // NOTE: placeholder venue — confirm and replace with the exact
+    // location the launch was held.
+    venue: "Kaduna, Nigeria",
+    recap:
+      "CROC AI Initiative officially launched in Kaduna, marking the start of a single mission: advancing and inspiring AI innovation across Nigeria and Africa. The launch introduced our leadership team, research direction, and flagship programmes to the community for the first time.",
+    coverImage: "/events/croc_ai_banner.png",
+    gallery: [],
+    speakers: ["Nasiru Iliya"],
+  },
+  // Once the first workshop wraps, add its entry here too, e.g.:
   // {
   //   category: "Workshops",
   //   title: "CROC AI Workshop Series: Build Your Own AI Chatbot",

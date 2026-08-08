@@ -85,26 +85,33 @@ export default function EventsPage() {
           ) : (
             <div className="space-y-6">
               {PAST_EVENTS.map((e) => (
-                <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl p-8 md:p-10">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle">{e.category}</span>
-                  <h3 className="font-display text-xl font-semibold mt-2 mb-3">{e.title}</h3>
-                  <div className="flex flex-wrap gap-x-6 gap-y-2 text-text-mid text-sm mb-5">
-                    <div className="flex items-center gap-2"><Calendar size={14} className="text-text-low" />{e.date}</div>
-                    <div className="flex items-center gap-2"><MapPin size={14} className="text-text-low" />{e.venue}</div>
-                    {e.speakers && e.speakers.length > 0 && (
-                      <div className="flex items-center gap-2"><Users size={14} className="text-text-low" />{e.speakers.join(", ")}</div>
-                    )}
-                  </div>
-                  <p className="text-text-mid text-[15px] leading-relaxed mb-6">{e.recap}</p>
-                  {e.gallery.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {e.gallery.map((src) => (
-                        <div key={src} className="relative aspect-square rounded-xl overflow-hidden">
-                          <Image src={src} alt={`${e.title} gallery photo`} fill className="object-cover" />
-                        </div>
-                      ))}
+                <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl overflow-hidden">
+                  {e.coverImage && (
+                    <div className="relative w-full h-48 md:h-64 bg-white">
+                      <Image src={e.coverImage} alt={`${e.title} banner`} fill className="object-contain p-6" />
                     </div>
                   )}
+                  <div className="p-8 md:p-10">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle">{e.category}</span>
+                    <h3 className="font-display text-xl font-semibold mt-2 mb-3">{e.title}</h3>
+                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-text-mid text-sm mb-5">
+                      <div className="flex items-center gap-2"><Calendar size={14} className="text-text-low" />{e.date}</div>
+                      <div className="flex items-center gap-2"><MapPin size={14} className="text-text-low" />{e.venue}</div>
+                      {e.speakers && e.speakers.length > 0 && (
+                        <div className="flex items-center gap-2"><Users size={14} className="text-text-low" />{e.speakers.join(", ")}</div>
+                      )}
+                    </div>
+                    <p className="text-text-mid text-[15px] leading-relaxed mb-6">{e.recap}</p>
+                    {e.gallery.length > 0 && (
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        {e.gallery.map((src) => (
+                          <div key={src} className="relative aspect-square rounded-xl overflow-hidden">
+                            <Image src={src} alt={`${e.title} gallery photo`} fill className="object-cover" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
