@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Calendar, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Calendar, MapPin, Users } from "lucide-react";
 import { SectionHead } from "@/components/section-head";
 import { CtaBanner } from "@/components/cta-banner";
 import { Button } from "@/components/ui/button";
+import { UPCOMING_EVENTS, PAST_EVENTS } from "@/lib/events";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -10,36 +12,6 @@ export const metadata: Metadata = {
 };
 
 const CATEGORIES = ["Workshops", "Conferences", "Hackathons", "Webinars", "Meetups", "AI Fridays"];
-
-const UPCOMING = [
-  {
-    category: "Workshops",
-    title: "CROC AI Workshop Series: Build Your Own AI Chatbot",
-    date: "August 27–29, 2026",
-    venue: "Kaduna State University, Kaduna",
-    status: "Registration open",
-    href: "/ai-academy",
-    real: true,
-  },
-  {
-    category: "AI Fridays",
-    title: "AI Fridays — weekly community session",
-    date: "Schedule to be announced",
-    venue: "Kaduna (venue TBA) / Online",
-    status: "Coming soon",
-    href: "/contact",
-    real: false,
-  },
-  {
-    category: "Hackathons",
-    title: "First CROC AI Hackathon",
-    date: "Date to be announced",
-    venue: "Kaduna, Nigeria",
-    status: "In planning",
-    href: "/contact",
-    real: false,
-  },
-];
 
 export default function EventsPage() {
   return (
@@ -62,25 +34,40 @@ export default function EventsPage() {
         <div className="max-w-[1240px] mx-auto px-6 md:px-8">
           <SectionHead tag="Upcoming" title="What's next." />
           <div className="grid md:grid-cols-3 gap-6">
-            {UPCOMING.map((e) => (
-              <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl p-8 flex flex-col">
-                <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle mb-3">{e.category}</span>
-                <h3 className="font-display text-lg font-semibold mb-4 leading-snug">{e.title}</h3>
-                <div className="flex items-center gap-2 text-text-mid text-sm mb-2">
-                  <Calendar size={14} className="text-text-low shrink-0" />
-                  {e.date}
-                </div>
-                <div className="flex items-center gap-2 text-text-mid text-sm mb-6">
-                  <MapPin size={14} className="text-text-low shrink-0" />
-                  {e.venue}
-                </div>
-                <div className="mt-auto flex items-center justify-between gap-3">
-                  <span className={`font-mono text-[11px] uppercase tracking-[0.05em] ${e.real ? "text-periwinkle" : "text-text-low"}`}>{e.status}</span>
-                  <Button href={e.href} variant="ghost" size="sm">{e.real ? "Register" : "Notify Me"} →</Button>
-                </div>
-                {!e.real && (
-                  <p className="text-[11px] text-text-low mt-4 border-t border-graphite-line pt-3">Placeholder — replace with confirmed date, venue, and speakers once scheduled.</p>
+            {UPCOMING_EVENTS.map((e) => (
+              <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl overflow-hidden flex flex-col">
+                {e.image && (
+                  <div className="relative h-44 w-full">
+                    <Image src={e.image} alt={e.title} fill className="object-cover" />
+                  </div>
                 )}
+                <div className="p-8 flex flex-col flex-1">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle mb-3">{e.category}</span>
+                  <h3 className="font-display text-lg font-semibold mb-4 leading-snug">{e.title}</h3>
+                  <div className="flex items-center gap-2 text-text-mid text-sm mb-2">
+                    <Calendar size={14} className="text-text-low shrink-0" />
+                    {e.date}
+                  </div>
+                  <div className="flex items-center gap-2 text-text-mid text-sm mb-2">
+                    <MapPin size={14} className="text-text-low shrink-0" />
+                    {e.venue}
+                  </div>
+                  {e.speakers && e.speakers.length > 0 && (
+                    <div className="flex items-start gap-2 text-text-mid text-sm mb-6">
+                      <Users size={14} className="text-text-low shrink-0 mt-0.5" />
+                      {e.speakers.join(", ")}
+                    </div>
+                  )}
+                  <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+                    <span className={`font-mono text-[11px] uppercase tracking-[0.05em] ${e.confirmed ? "text-periwinkle" : "text-text-low"}`}>{e.status}</span>
+                    <Button href={e.registrationUrl ?? e.internalHref} variant="ghost" size="sm">
+                      {e.registrationUrl ? "Apply / Register" : e.confirmed ? "Learn More" : "Notify Me"} →
+                    </Button>
+                  </div>
+                  {!e.confirmed && (
+                    <p className="text-[11px] text-text-low mt-4 border-t border-graphite-line pt-3">Placeholder — replace with confirmed date, venue, and speakers once scheduled.</p>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -89,11 +76,39 @@ export default function EventsPage() {
 
       <section className="pb-24">
         <div className="max-w-[1240px] mx-auto px-6 md:px-8">
-          <SectionHead tag="Past Events" title="Event archive." desc="A gallery and recap of every completed event will live here as our programme runs." />
-          <div className="border border-dashed border-graphite-line rounded-3xl p-14 text-center">
-            <h3 className="font-display text-xl font-semibold mb-3">No past events yet</h3>
-            <p className="text-text-mid max-w-md mx-auto text-sm">Once our first workshop wraps in August 2026, its recap, speaker list, and photo gallery will be archived here.</p>
-          </div>
+          <SectionHead tag="Past Events" title="Event archive." desc="A gallery and recap of every completed event lives here." />
+          {PAST_EVENTS.length === 0 ? (
+            <div className="border border-dashed border-graphite-line rounded-3xl p-14 text-center">
+              <h3 className="font-display text-xl font-semibold mb-3">No past events yet</h3>
+              <p className="text-text-mid max-w-md mx-auto text-sm">Once our first workshop wraps in August 2026, its recap, speaker list, and photo gallery will be archived here.</p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {PAST_EVENTS.map((e) => (
+                <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl p-8 md:p-10">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle">{e.category}</span>
+                  <h3 className="font-display text-xl font-semibold mt-2 mb-3">{e.title}</h3>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 text-text-mid text-sm mb-5">
+                    <div className="flex items-center gap-2"><Calendar size={14} className="text-text-low" />{e.date}</div>
+                    <div className="flex items-center gap-2"><MapPin size={14} className="text-text-low" />{e.venue}</div>
+                    {e.speakers && e.speakers.length > 0 && (
+                      <div className="flex items-center gap-2"><Users size={14} className="text-text-low" />{e.speakers.join(", ")}</div>
+                    )}
+                  </div>
+                  <p className="text-text-mid text-[15px] leading-relaxed mb-6">{e.recap}</p>
+                  {e.gallery.length > 0 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                      {e.gallery.map((src) => (
+                        <div key={src} className="relative aspect-square rounded-xl overflow-hidden">
+                          <Image src={src} alt={`${e.title} gallery photo`} fill className="object-cover" />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

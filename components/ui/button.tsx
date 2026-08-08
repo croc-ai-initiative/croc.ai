@@ -34,6 +34,18 @@ export function Button({
   );
 
   if (href) {
+    // Any href starting with http(s):// is treated as external (e.g. a
+    // Google Form link) — opens in a new tab with the standard safe-link
+    // attributes, automatically, so this never has to be remembered
+    // per-use when adding new events/programs.
+    const isExternal = /^https?:\/\//.test(href);
+    if (isExternal) {
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={classes}>
         {children}

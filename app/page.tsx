@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { SectionHead } from "@/components/section-head";
 import { HeroCanvas } from "@/components/hero-canvas";
 import { CtaBanner } from "@/components/cta-banner";
+import { UPCOMING_EVENTS } from "@/lib/events";
 
 const PARTNERS = [
   { name: "Kaduna State Government", logo: "/partners/kaduna-state.png" },
@@ -166,12 +167,9 @@ export default function Home() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6 mt-6">
-            {[
-              { cat: "AI Fridays", title: "AI Fridays — weekly community session", date: "Schedule to be announced", venue: "Kaduna / Online" },
-              { cat: "Hackathons", title: "First CROC AI Hackathon", date: "Date to be announced", venue: "Kaduna, Nigeria" },
-            ].map((e) => (
+            {UPCOMING_EVENTS.filter((e) => e.title !== "CROC AI Workshop Series: Build Your Own AI Chatbot").map((e) => (
               <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl p-7">
-                <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle">{e.cat}</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.06em] text-periwinkle">{e.category}</span>
                 <h4 className="font-display text-base font-semibold mt-2 mb-3">{e.title}</h4>
                 <div className="flex items-center gap-2 text-text-mid text-sm mb-1.5">
                   <Calendar size={13} className="text-text-low shrink-0" /> {e.date}
