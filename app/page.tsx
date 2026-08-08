@@ -43,6 +43,10 @@ export default function Home() {
         <HeroCanvas />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_40%,transparent_0%,var(--ink)_88%)] pointer-events-none" />
         <div className="relative z-10 max-w-[1240px] mx-auto px-6 md:px-8 w-full">
+          <span className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.1em] uppercase text-periwinkle bg-indigo-dim border border-indigo/30 px-3.5 py-1.5 rounded-full mb-7">
+            <span className="w-1.5 h-1.5 rounded-full bg-periwinkle animate-pulse" />
+            Kaduna, Nigeria. Building in public
+          </span>
           <h1 className="font-display font-bold tracking-tight text-[clamp(40px,6vw,84px)] leading-[1.02] max-w-4xl">
             Advancing and <span className="text-indigo">inspiring AI innovation,</span>{" "}
             across Nigeria and Africa.
