@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Handshake, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SectionHead } from "@/components/section-head";
 import { HeroCanvas } from "@/components/hero-canvas";
 import { CtaBanner } from "@/components/cta-banner";
 import { UPCOMING_EVENTS } from "@/lib/events";
+import { assetPath } from "@/lib/utils";
 
 const PARTNERS = [
   { name: "Kaduna State Government", logo: "/partners/kaduna-state.png" },
@@ -240,7 +240,7 @@ export default function Home() {
             {PARTNERS.map((p) => (
               <div key={p.name} className="bg-ink h-28 flex flex-col items-center justify-center gap-2 px-3 text-center hover:bg-graphite transition-colors">
                 <div className="w-11 h-11 bg-white rounded-lg flex items-center justify-center p-1.5">
-                  <Image src={p.logo} alt={`${p.name} logo`} width={44} height={44} className="w-full h-full object-contain" />
+                  <img src={assetPath(p.logo)} alt={`${p.name} logo`} width={44} height={44} className="w-full h-full object-contain" />
                 </div>
                 <span className="font-display font-semibold text-[11px] text-text-mid hover:text-text-hi transition-colors leading-tight">
                   {p.name}

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Calendar, MapPin, Users } from "lucide-react";
 import { SectionHead } from "@/components/section-head";
 import { CtaBanner } from "@/components/cta-banner";
 import { Button } from "@/components/ui/button";
 import { UPCOMING_EVENTS, PAST_EVENTS } from "@/lib/events";
+import { assetPath } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -38,7 +38,7 @@ export default function EventsPage() {
               <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl overflow-hidden flex flex-col">
                 {e.image && (
                   <div className="relative h-44 w-full">
-                    <Image src={e.image} alt={e.title} fill className="object-cover" />
+                    <img src={assetPath(e.image)} alt={e.title} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                 )}
                 <div className="p-8 flex flex-col flex-1">
@@ -88,7 +88,7 @@ export default function EventsPage() {
                 <div key={e.title} className="bg-graphite border border-graphite-line rounded-2xl overflow-hidden">
                   {e.coverImage && (
                     <div className="relative w-full h-48 md:h-64 bg-white">
-                      <Image src={e.coverImage} alt={`${e.title} banner`} fill className="object-contain p-6" />
+                      <img src={assetPath(e.coverImage)} alt={`${e.title} banner`} className="absolute inset-0 w-full h-full object-contain p-6" />
                     </div>
                   )}
                   <div className="p-8 md:p-10">
@@ -106,7 +106,7 @@ export default function EventsPage() {
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         {e.gallery.map((src) => (
                           <div key={src} className="relative aspect-square rounded-xl overflow-hidden">
-                            <Image src={src} alt={`${e.title} gallery photo`} fill className="object-cover" />
+                            <img src={assetPath(src)} alt={`${e.title} gallery photo`} className="absolute inset-0 w-full h-full object-cover" />
                           </div>
                         ))}
                       </div>
