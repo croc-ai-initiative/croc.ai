@@ -54,7 +54,6 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-7 gap-8 mb-16">
           <div className="col-span-2">
             <div className="flex items-center gap-2 font-display font-bold text-xl">
-              {/* eslint-disable-next-line @next/next/no-img-element -- next/image doesn't respect basePath when unoptimized (required for static export); see lib/utils.ts assetPath() */}
               <img src={assetPath("/croc-ai-icon-white.png")} alt="" className="w-6 h-6 shrink-0" />
               <span className="flex items-baseline">
                 <span className="text-text-hi">CROC</span>

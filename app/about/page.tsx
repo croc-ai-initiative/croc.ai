@@ -12,34 +12,34 @@ const SUPPORT_TEAM = [
   {
     initials: "NI",
     name: "Nasiru Iliya",
-    role: "CEO & President",
+    role: "Founder & Initiative Lead",
     sub: "Assistant Lecturer, Cyber Security, Nigerian Defence Academy",
     cred: "MSc Engineering, Artificial Intelligence, Carnegie Mellon University, Kigali, Rwanda. MSc Computing and BSc Computer Science (First Class), Kaduna State University.",
   },
   {
     initials: "HS",
     name: "Haruna Saidu",
-    role: "Co-Founder & CTO",
+    role: "Co-Lead, Technology & Engineering",
     sub: "Senior System Analyst",
     cred: "MSc Computer Science and BSc Computer Science, Kaduna State University.",
   },
   {
+    initials: "MA",
+    name: "Prof. Muhammad Aminu Ahmad",
+    role: "Scientific & Research Advisor",
+    sub: "Professor, Kaduna State University",
+    cred: "PhD and MSc Network and Information Security, University of Greenwich, UK. BSc Computer Science, Usmanu Danfodiyo University Sokoto.",
+  },
+  {
     initials: "MI",
-    name: "Dr Mohammed Ibrahim",
-    role: "Chief Cybersecurity & Digital Trust Advisor",
+    name: "Dr. Mohammed Ibrahim",
+    role: "Cybersecurity & Digital Trust Advisor",
     sub: "Head, Cyber Security Dept., Nigerian Defence Academy",
     cred: "PhD and MEng, Universiti Putra Malaysia. BEng, Federal University of Technology, Minna.",
   },
 ];
 
 const RESEARCHERS = [
-  {
-    initials: "MA",
-    name: "Prof. Muhammad Aminu Ahmad",
-    role: "Chief Scientific & Innovation Advisor",
-    sub: "Professor, Kaduna State University",
-    cred: "PhD and MSc Network and Information Security, University of Greenwich, UK. BSc Computer Science, Usmanu Danfodiyo University Sokoto.",
-  },
   {
     initials: "AA",
     name: "Abdulqahar Mukhtar Abubakar",

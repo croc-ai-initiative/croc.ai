@@ -25,7 +25,6 @@ export function Nav() {
     <header className="fixed top-0 left-0 right-0 z-[100] bg-ink/72 backdrop-blur-md border-b border-graphite-line">
       <div className="max-w-[1240px] mx-auto px-6 md:px-8 h-[72px] flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 font-display font-bold text-xl tracking-tight">
-          {/* eslint-disable-next-line @next/next/no-img-element -- next/image doesn't respect basePath when unoptimized (required for static export); see lib/utils.ts assetPath() */}
           <img src={assetPath("/croc-ai-icon-white.png")} alt="" className="w-7 h-7 shrink-0" />
           <span className="flex items-baseline">
             <span className="text-text-hi">CROC</span>

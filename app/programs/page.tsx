@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SectionHead } from "@/components/section-head";
 import { CtaBanner } from "@/components/cta-banner";
 import { Button } from "@/components/ui/button";
 
